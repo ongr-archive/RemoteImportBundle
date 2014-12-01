@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 class SyncConvertFileCommandTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test ongr:sync:convert-file behavior.
+     * Test ongr:remote:convert-file behavior.
      */
     public function testCommand()
     {

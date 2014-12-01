@@ -21,7 +21,7 @@ class SyncConvertFileCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('ongr:sync:convert-file')
+            ->setName('ongr:remote:convert-file')
             ->setDescription('Converts raw provider file into general format.')
             ->addArgument(
                 'provider',

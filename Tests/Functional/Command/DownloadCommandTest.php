@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
- * Functional test for ongr:sync:download command.
+ * Functional test for ongr:remote:download command.
  */
 class DownloadCommandTest extends WebTestCase
 {
@@ -29,7 +29,7 @@ class DownloadCommandTest extends WebTestCase
 
         $application = new Application($kernel);
         $application->add(new DownloadCommand());
-        $command = $application->find('ongr:sync:download');
+        $command = $application->find('ongr:remote:download');
 
         $commandTester = new CommandTester($command);
         $commandTester->execute(

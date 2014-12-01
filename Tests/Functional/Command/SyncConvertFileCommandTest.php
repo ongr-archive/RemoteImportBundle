@@ -10,7 +10,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 use ONGR\ElasticsearchBundle\Command\IndexImportCommand;
 
 /**
- * Functional test for ongr:sync:convert-file command.
+ * Functional test for ongr:remote:convert-file command.
  */
 class SyncConvertFileCommandTest extends WebTestCase
 {
@@ -53,7 +53,7 @@ class SyncConvertFileCommandTest extends WebTestCase
         $application->add(new SyncConvertFileCommand());
         $application->add(new IndexImportCommand());
 
-        $command = $application->find('ongr:sync:convert-file');
+        $command = $application->find('ongr:remote:convert-file');
 
         $commandTester = new CommandTester($command);
         $commandTester->execute(

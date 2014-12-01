@@ -29,7 +29,7 @@ class DownloadCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('ongr:sync:download')
+            ->setName('ongr:remote:download')
             ->setDescription('Downloads raw data from provider repository.')
             ->addArgument(
                 'provider',

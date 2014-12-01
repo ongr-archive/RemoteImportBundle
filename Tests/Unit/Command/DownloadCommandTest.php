@@ -28,7 +28,7 @@ class DownloadCommandTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test fox:sync:download behavior.
+     * Test ongr:remote:download behavior.
      *
      * @param bool   $halt
      * @param string $provider
@@ -41,7 +41,7 @@ class DownloadCommandTest extends \PHPUnit_Framework_TestCase
         $testOutput = ['test1', 'test2'];
 
         /** @var \PHPUnit_Framework_MockObject_MockObject|SyncTaskCompleteBlockerListener $blocker */
-        $blocker = $this->getMockBuilder('Fox\\ConnectionsBundle\\EventListener\\SyncTaskCompleteBlockerListener')
+        $blocker = $this->getMockBuilder('ONGR\\ConnectionsBundle\\EventListener\\SyncTaskCompleteBlockerListener')
             ->disableOriginalConstructor()
             ->setMethods(['setHalt'])
             ->getMock();
@@ -52,7 +52,7 @@ class DownloadCommandTest extends \PHPUnit_Framework_TestCase
 
         /** @var \PHPUnit_Framework_MockObject_MockObject|DataDownloadService $downloadService */
         $downloadService = $this
-            ->getMockBuilder('Fox\\ConnectionsBundle\\Service\\DocumentsFileStorage\\DataDownloadService')
+            ->getMockBuilder('ONGR\\RemoteImportBundle\\Service\\DocumentsFileStorage\\DataDownloadService')
             ->disableOriginalConstructor()
             ->setMethods(['download'])
             ->getMock();

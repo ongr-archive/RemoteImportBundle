@@ -1,6 +1,6 @@
 <?php
 
-namespace Fox\RemoteImportBundle\Tests\Unit\Service\DocumentsFileStorage;
+namespace ONGR\RemoteImportBundle\Tests\Unit\Service\DocumentsFileStorage;
 
 use ONGR\ConnectionsBundle\Event\SyncTaskCompleteEvent;
 use ONGR\RemoteImportBundle\Service\DocumentsFileStorage\AbstractDownloader;
