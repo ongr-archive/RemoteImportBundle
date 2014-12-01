@@ -1,0 +1,38 @@
+services:
+    project.downloader.dummy:
+        class: ONGR\RemoteImportBundle\Tests\Functional\Fixtures\Downloader\DummyDownloader
+        calls:
+            - [ setDispatcher, [ @event_dispatcher ] ]
+        tags:
+            - name: kernel.event_listener
+              event: ongr.pipeline.ongr_download.provider_foo.source
+              method: onSource
+
+    project.converter.products:
+        class: ONGR\RemoteImportBundle\Tests\Functional\Fixtures\Convert\ProductsConverter
+        calls:
+            - [ setDispatcher, [ @event_dispatcher ] ]
+        tags:
+            - name: kernel.event_listener
+              event: ongr.pipeline.ongr_convert.product.source
+              method: onSource
+
+    project.converter.products.consumer:
+        class: ONGR\RemoteImportBundle\Tests\Functional\Fixtures\Convert\ProductConsumer
+        calls:
+            - [ setDispatcher, [ @event_dispatcher ] ]
+        tags:
+            - name: kernel.event_listener
+              event: ongr.pipeline.ongr_convert.product.consume
+              method: onConsume
+            - name: kernel.event_listener
+              event: ongr.pipeline.ongr_convert.product.start
+              method: onStart
+            - name: kernel.event_listener
+              event: ongr.pipeline.ongr_convert.product.finish
+              method: onFinish
+
+    project.listener.dummy:
+        class: ONGR\RemoteImportBundle\Tests\Functional\Fixtures\DummySyncListener
+        tags:
+            - { name: kernel.event_listener, event: ongr_connections.sync_task_complete, method: onComplete }

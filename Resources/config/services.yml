@@ -1,0 +1,23 @@
+parameters:
+    ongr_remote_import.data_convert_service.class: ONGR\RemoteImportBundle\Service\DocumentsFileStorage\DataConvertService
+    ongr_remote_import.data_download_service.class: ONGR\RemoteImportBundle\Service\DocumentsFileStorage\DataDownloadService
+    ongr_remote_import.json_writer.class: ONGR\RemoteImportBundle\Utils\Json\CollectionToJsonFile
+
+services:
+    ongr_remote_import.data_convert_service:
+            class: %ongr_remote_import.data_convert_service.class%
+            arguments:
+                - @ongr_connections.import_data_directory
+            calls:
+                - [setDispatcher, [@event_dispatcher]]
+                - [setPipelineFactory, [ @ongr_connections.pipeline_factory ] ]
+
+    ongr_connections.data_download_service:
+        class: %ongr_remote_import.data_download_service.class%
+        arguments:
+            - @ongr_connections.import_data_directory
+        calls:
+            - [ setPipelineFactory, [ @ongr_connections.pipeline_factory ] ]
+
+    ongr_remote_import.json_writer:
+            class: %ongr_remote_import.json_writer.class%
