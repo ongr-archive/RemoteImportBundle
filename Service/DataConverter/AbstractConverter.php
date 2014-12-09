@@ -6,15 +6,18 @@ use ONGR\ConnectionsBundle\Pipeline\Event\SourcePipelineEvent;
 use ONGR\ConnectionsBundle\Event\SyncTaskCompleteEvent;
 use ONGR\ConnectionsBundle\Service\ImportDataDirectory;
 use ONGR\RemoteImportBundle\Utils\Exception\NotCountableException;
-use Psr\Log\LoggerInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * This class implements basic behavior data converter.
  */
-abstract class AbstractConverter implements \Iterator, FileAwareConverterInterface
+abstract class AbstractConverter implements \Iterator, FileAwareConverterInterface, LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * @var ImportDataDirectory
      */
@@ -29,11 +32,6 @@ abstract class AbstractConverter implements \Iterator, FileAwareConverterInterfa
      * @var string
      */
     protected $fileName;
-
-    /**
-     * @var LoggerInterface
-     */
-    protected $logger;
 
     /**
      * @var EventDispatcherInterface
@@ -110,22 +108,6 @@ abstract class AbstractConverter implements \Iterator, FileAwareConverterInterfa
     public function getRepository()
     {
         return null;
-    }
-
-    /**
-     * @param LoggerInterface $logger
-     */
-    public function setLogger(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-    }
-
-    /**
-     * @return LoggerInterface
-     */
-    public function getLogger()
-    {
-        return $this->logger;
     }
 
     /**

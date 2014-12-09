@@ -57,7 +57,7 @@ class DownloadCommand extends ContainerAwareCommand
         $start = microtime(true);
 
         /** @var DataDownloadService $service */
-        $service = $this->getContainer()->get('ongr_connections.data_download_service');
+        $service = $this->getContainer()->get('ongr_remote_import.data_download_service');
 
         /** @var SyncTaskCompleteBlockerListener $blocker */
         $blocker = $this->getContainer()->get('ongr_connections.sync_task_complete_blocker_listener');

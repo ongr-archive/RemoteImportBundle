@@ -41,7 +41,7 @@ class SyncConvertFileCommandTest extends \PHPUnit_Framework_TestCase
 
         $container = new ContainerBuilder();
         $container->set('ongr_connections.sync_task_complete_blocker_listener', $blocker);
-        $container->set('ongr_connections.data_convert_service', $dataConvertService);
+        $container->set('ongr_remote_import.data_convert_service', $dataConvertService);
 
         $command = new SyncConvertFileCommand();
         $command->setContainer($container);

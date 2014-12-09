@@ -3,17 +3,14 @@
 namespace ONGR\RemoteImportBundle\Service\Downloader;
 
 use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerInterface;
+use Psr\Log\LoggerAwareTrait;
 
 /**
  * Downloads file contents over ftp.
  */
 class FtpConnection implements LoggerAwareInterface
 {
-    /**
-     * @var LoggerInterface
-     */
-    protected $logger;
+    use LoggerAwareTrait;
 
     /**
      * @var array
@@ -42,15 +39,19 @@ class FtpConnection implements LoggerAwareInterface
     {
         if ($this->ftp) {
             if ($this->ftpClose()) {
-                $this->logger && $this->logger->info(
-                    'FTP connection: ftp_close()',
-                    [$this->connection['host'], 'success']
-                );
+                if ($this->logger) {
+                    $this->logger->info(
+                        'FTP connection: ftp_close()',
+                        [$this->connection['host'], 'success']
+                    );
+                }
             } else {
-                $this->logger && $this->logger->info(
-                    'FTP connection: ftp_close()',
-                    [$this->connection['host'], 'failure']
-                );
+                if ($this->logger) {
+                    $this->logger->info(
+                        'FTP connection: ftp_close()',
+                        [$this->connection['host'], 'failure']
+                    );
+                }
             }
         }
     }
@@ -86,50 +87,54 @@ class FtpConnection implements LoggerAwareInterface
         $conn = $this->ftpConnect();
 
         if ($conn != false) {
-            $this->logger && $this->logger->info(
-                'FTP connection: ftp_connect()',
-                [$this->connection['host'], 'success']
-            );
-
-            if ($this->ftpLogin($conn)) {
-                $this->logger && $this->logger->info(
-                    'FTP connection: ftp_login()',
-                    [$this->connection['user'], 'success']
-                );
-
-                if ($this->ftpPasv($conn)) {
-                    $this->logger && $this->logger->info(
-                        'FTP connection: ftp_pasv()',
-                        ['success']
-                    );
-                } else {
-                    $this->logger && $this->logger->info(
-                        'FTP connection: ftp_pasv()',
-                        ['failure']
-                    );
-                }
-            } else {
-                $this->logger && $this->logger->info(
-                    'FTP connection: ftp_login()',
-                    [$this->connection['user'], 'failure']
+            if ($this->logger) {
+                $this->logger->info(
+                    'FTP connection: ftp_connect()',
+                    [$this->connection['host'], 'success']
                 );
             }
+
+            if ($this->ftpLogin($conn)) {
+                if ($this->logger) {
+                    $this->logger->info(
+                        'FTP connection: ftp_login()',
+                        [$this->connection['user'], 'success']
+                    );
+                }
+
+                if ($this->ftpPasv($conn)) {
+                    if ($this->logger) {
+                        $this->logger->info(
+                            'FTP connection: ftp_pasv()',
+                            ['success']
+                        );
+                    }
+                } else {
+                    if ($this->logger) {
+                        $this->logger->info(
+                            'FTP connection: ftp_pasv()',
+                            ['failure']
+                        );
+                    }
+                }
+            } else {
+                if ($this->logger) {
+                    $this->logger->info(
+                        'FTP connection: ftp_login()',
+                        [$this->connection['user'], 'failure']
+                    );
+                }
+            }
         } else {
-            $this->logger && $this->logger->info(
-                'FTP connection: ftp_connect()',
-                [$this->connection['host'], 'failure']
-            );
+            if ($this->logger) {
+                $this->logger->info(
+                    'FTP connection: ftp_connect()',
+                    [$this->connection['host'], 'failure']
+                );
+            }
         }
 
         return $conn;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setLogger(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
     }
 
     /**
