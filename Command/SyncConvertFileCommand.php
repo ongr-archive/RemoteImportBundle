@@ -54,7 +54,7 @@ class SyncConvertFileCommand extends ContainerAwareCommand
         $start = microtime(true);
 
         /** @var DataConvertService $service */
-        $service = $this->getContainer()->get('ongr_connections.data_convert_service');
+        $service = $this->getContainer()->get('ongr_remote_import.data_convert_service');
 
         /** @var SyncTaskCompleteBlockerListener $blocker */
         $blocker = $this->getContainer()->get('ongr_connections.sync_task_complete_blocker_listener');

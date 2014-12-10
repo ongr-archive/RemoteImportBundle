@@ -12,7 +12,7 @@ services:
                 - [setDispatcher, [@event_dispatcher]]
                 - [setPipelineFactory, [ @ongr_connections.pipeline_factory ] ]
 
-    ongr_connections.data_download_service:
+    ongr_remote_import.data_download_service:
         class: %ongr_remote_import.data_download_service.class%
         arguments:
             - @ongr_connections.import_data_directory

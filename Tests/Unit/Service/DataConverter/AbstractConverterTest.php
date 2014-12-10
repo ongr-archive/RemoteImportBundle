@@ -65,20 +65,6 @@ class AbstractConverterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests setting and getting logger.
-     */
-    public function testSetGetLogger()
-    {
-        $converter = $this->getConverter(null, 'ongr');
-
-        $logger = new Logger('');
-
-        $converter->setLogger($logger);
-
-        $this->assertSame($logger, $converter->getLogger());
-    }
-
-    /**
      * Tests BadMethodCallException throwing.
      *
      * @expectedException \BadMethodCallException

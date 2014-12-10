@@ -64,7 +64,7 @@ class DownloadCommandTest extends \PHPUnit_Framework_TestCase
 
         $container = new ContainerBuilder();
         $container->set('ongr_connections.sync_task_complete_blocker_listener', $blocker);
-        $container->set('ongr_connections.data_download_service', $downloadService);
+        $container->set('ongr_remote_import.data_download_service', $downloadService);
 
         $command = new DownloadCommand();
         $command->setContainer($container);
