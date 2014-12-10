@@ -5,7 +5,6 @@ namespace ONGR\RemoteImportBundle\Tests\Unit\Service\DataConverter;
 use ONGR\RemoteImportBundle\Service\DataConverter\AbstractConverter;
 use ONGR\ConnectionsBundle\Service\ImportDataDirectory;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
-use Symfony\Bridge\Monolog\Logger;
 
 /**
  * Test for AbstractConverter.
@@ -73,5 +72,35 @@ class AbstractConverterTest extends \PHPUnit_Framework_TestCase
     {
         $converter = $this->getConverter(null, null);
         $converter->setType('ShouldNotWork');
+    }
+
+    /**
+     * Tests AbstractConverter::getDataType().
+     */
+    public function testGetDataType()
+    {
+        $dir = new ImportDataDirectory('/var/www/whatever/app', 'data');
+        $converter = $this->getConverter($dir, 'ongr');
+        $this->assertEquals('full_documents', $converter->getDataType());
+    }
+
+    /**
+     * Tests AbstractConverter::getDir().
+     */
+    public function testGetDir()
+    {
+        $dir = new ImportDataDirectory('/var/www/whatever/app', 'data');
+        $converter = $this->getConverter($dir, 'ongr');
+        $this->assertSame($dir, $converter->getDir());
+    }
+
+    /**
+     * Tests AbstractConverter::getProvider().
+     */
+    public function testGetProvider()
+    {
+        $dir = new ImportDataDirectory('/var/www/whatever/app', 'data');
+        $converter = $this->getConverter($dir, 'ongr');
+        $this->assertEquals('ongr', $converter->getProvider());
     }
 }

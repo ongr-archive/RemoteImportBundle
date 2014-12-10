@@ -52,4 +52,27 @@ class AbstractXMLConverterTest extends \PHPUnit_Framework_TestCase
 
         return $converter;
     }
+
+    /**
+     * Tests AbstractXMLConverter::count(),  AbstractXMLConverter::rewind(),  AbstractXMLConverter::key().
+     */
+    public function testIterator()
+    {
+        $converter = $this->getConverter();
+        $converter->expects($this->any())->method('getObjectTag')->willReturn('product');
+        $converter->setFileName('product.xml');
+        $this->assertEquals(1, count($converter));
+        $this->assertEquals(1, count($converter));
+
+        $counter = 0;
+        foreach ($converter as $key => $value) {
+            $this->assertEquals($counter++, $key);
+            $this->assertEmpty($value);
+        }
+        $counter = 0;
+        foreach ($converter as $key => $value) {
+            $this->assertEquals($counter++, $key);
+            $this->assertEmpty($value);
+        }
+    }
 }
