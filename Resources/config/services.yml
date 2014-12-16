@@ -2,15 +2,18 @@ parameters:
     ongr_remote_import.data_convert_service.class: ONGR\RemoteImportBundle\Service\DocumentsFileStorage\DataConvertService
     ongr_remote_import.data_download_service.class: ONGR\RemoteImportBundle\Service\DocumentsFileStorage\DataDownloadService
     ongr_remote_import.json_writer.class: ONGR\RemoteImportBundle\Utils\Json\CollectionToJsonFile
+    ongr_remote_import.import_data_directory.class: ONGR\RemoteImportBundle\Service\ImportDataDirectory
+    ongr_remote_import.import_data_directory.data_dir: data
+    ongr_remote_import.date_helper.class: ONGR\RemoteImportBundle\Service\DateHelper
 
 services:
     ongr_remote_import.data_convert_service:
-            class: %ongr_remote_import.data_convert_service.class%
-            arguments:
-                - @ongr_connections.import_data_directory
-            calls:
-                - [setDispatcher, [@event_dispatcher]]
-                - [setPipelineFactory, [ @ongr_connections.pipeline_factory ] ]
+        class: %ongr_remote_import.data_convert_service.class%
+        arguments:
+            - @ongr_connections.import_data_directory
+        calls:
+            - [setDispatcher, [@event_dispatcher]]
+            - [setPipelineFactory, [ @ongr_connections.pipeline_factory ] ]
 
     ongr_remote_import.data_download_service:
         class: %ongr_remote_import.data_download_service.class%
@@ -21,3 +24,14 @@ services:
 
     ongr_remote_import.json_writer:
             class: %ongr_remote_import.json_writer.class%
+
+    ongr_remote_import.import_data_directory:
+        class: %ongr_remote_import.import_data_directory.class%
+        arguments:
+            - %kernel.root_dir%
+            - %ongr_remote_import.import_data_directory.data_dir%
+        calls:
+            - [setDateHelper, [@ongr_remote_import.date_helper]]
+
+    ongr_remote_import.date_helper:
+        class: %ongr_remote_import.date_helper.class%
