@@ -3,7 +3,7 @@
 namespace ONGR\RemoteImportBundle\Tests\Unit\Service\DataConverter;
 
 use ONGR\RemoteImportBundle\Service\DataConverter\AbstractConverter;
-use ONGR\ConnectionsBundle\Service\ImportDataDirectory;
+use ONGR\RemoteImportBundle\Service\ImportDataDirectory;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
 
 /**

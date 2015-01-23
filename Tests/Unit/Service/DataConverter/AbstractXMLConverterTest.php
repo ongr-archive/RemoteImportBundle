@@ -3,7 +3,7 @@
 namespace ONGR\RemoteImportBundle\Tests\Unit\Service\DataConverter;
 
 use ONGR\RemoteImportBundle\Service\DataConverter\AbstractXMLConverter;
-use ONGR\ConnectionsBundle\Service\ImportDataDirectory;
+use ONGR\RemoteImportBundle\Service\ImportDataDirectory;
 
 /**
  * Unit tests for AbstractXMLConverter.
