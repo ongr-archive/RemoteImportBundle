@@ -10,7 +10,7 @@ services:
     ongr_remote_import.data_convert_service:
         class: %ongr_remote_import.data_convert_service.class%
         arguments:
-            - @ongr_connections.import_data_directory
+            - @ongr_remote_import.import_data_directory
         calls:
             - [setDispatcher, [@event_dispatcher]]
             - [setPipelineFactory, [ @ongr_connections.pipeline_factory ] ]
@@ -18,7 +18,7 @@ services:
     ongr_remote_import.data_download_service:
         class: %ongr_remote_import.data_download_service.class%
         arguments:
-            - @ongr_connections.import_data_directory
+            - @ongr_remote_import.import_data_directory
         calls:
             - [ setPipelineFactory, [ @ongr_connections.pipeline_factory ] ]
 

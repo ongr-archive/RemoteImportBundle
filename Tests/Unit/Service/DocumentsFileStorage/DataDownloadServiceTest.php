@@ -5,7 +5,7 @@ namespace ONGR\RemoteImportBundle\Tests\Unit\Service\DocumentsFileStorage;
 use ONGR\ConnectionsBundle\Pipeline\PipelineFactory;
 use ONGR\ConnectionsBundle\Pipeline\PipelineInterface;
 use ONGR\RemoteImportBundle\Service\DocumentsFileStorage\DataDownloadService;
-use ONGR\ConnectionsBundle\Service\ImportDataDirectory;
+use ONGR\RemoteImportBundle\Service\ImportDataDirectory;
 
 /**
  * Test for DataDownloadService.
@@ -18,8 +18,11 @@ class DataDownloadServiceTest extends \PHPUnit_Framework_TestCase
     public function testDownload()
     {
         /** @var PipelineInterface|\PHPUnit_Framework_MockObject_MockObject $pipeline */
-        $pipeline = $this->getMock('\ONGR\ConnectionsBundle\Pipeline\PipelineInterface');
-        $pipeline->expects($this->any())->method('execute')->willReturn(['outputs' => ['data.txt']]);
+        $pipeline = $this->getMockBuilder('\ONGR\ConnectionsBundle\Pipeline\Pipeline')
+            ->disableOriginalConstructor()
+            ->setMethods(['start'])
+            ->getMock();
+        $pipeline->expects($this->any())->method('start')->willReturn(['outputs' => ['data.txt']]);
 
         /** @var PipelineFactory|\PHPUnit_Framework_MockObject_MockObject $pipelineFactory */
         $pipelineFactory = $this->getMock('\ONGR\ConnectionsBundle\Pipeline\PipelineFactory');
@@ -27,7 +30,7 @@ class DataDownloadServiceTest extends \PHPUnit_Framework_TestCase
 
         /** @var ImportDataDirectory|\PHPUnit_Framework_MockObject_MockObject $dir */
         $dir = $this->getMock(
-            'ONGR\ConnectionsBundle\Service\ImportDataDirectory',
+            'ONGR\RemoteImportBundle\Service\ImportDataDirectory',
             ['getDataDirPath', 'getCurrentDir'],
             [],
             '',

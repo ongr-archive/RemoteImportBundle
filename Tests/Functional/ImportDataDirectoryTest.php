@@ -71,7 +71,7 @@ class ImportDataDirectoryTest extends WebTestCase
     {
         $files = new Filesystem();
 
-        $pathPrefix = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'ongr' . DIRECTORY_SEPARATOR;
+        $pathPrefix = sys_get_temp_dir() . '/' . 'ongr' . '/';
 
         $this->assertFalse(
             $files->exists($pathPrefix . $expectedPath),
@@ -317,6 +317,6 @@ class ImportDataDirectoryTest extends WebTestCase
      */
     protected function getService()
     {
-        return self::createClient()->getContainer()->get('ongr_connections.import_data_directory');
+        return self::createClient()->getContainer()->get('ongr_remote_import.import_data_directory');
     }
 }

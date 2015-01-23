@@ -3,7 +3,7 @@
 namespace ONGR\RemoteImportBundle\Service\DocumentsFileStorage;
 
 use ONGR\ConnectionsBundle\Pipeline\PipelineFactory;
-use ONGR\ConnectionsBundle\Service\ImportDataDirectory;
+use ONGR\RemoteImportBundle\Service\ImportDataDirectory;
 
 /**
  * Downloads data using injected downloader. Saves contents to file.
@@ -81,7 +81,7 @@ class DataDownloadService
         $dir = $this->dir->getDataDirPath();
         $path = $this->getCurrentDir($provider, true);
         $pipeline->setContext(['dir' => $dir, 'path' => $path]);
-        $files = $pipeline->execute()['outputs'];
+        $files = $pipeline->start()['outputs'];
 
         $out = [];
 

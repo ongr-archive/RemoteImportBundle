@@ -10,7 +10,7 @@ use ONGR\RemoteImportBundle\Service\Downloader\ZipExtract;
 class ZipExtractTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var string Testing directory
+     * @var string Testing directory.
      */
     protected $dir;
 

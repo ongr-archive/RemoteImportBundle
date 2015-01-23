@@ -10,3 +10,4 @@ parameters:
 
     locale: en
     secret: 'superdupersecretkey#pleasedonttellitanyone'
+    ongr_connections.import.modifier.class: Some\DummyClass

@@ -11,12 +11,12 @@ use Symfony\Component\DependencyInjection\SimpleXMLElement;
 abstract class AbstractXMLConverter extends AbstractConverter
 {
     /**
-     * @var bool Is current key valid
+     * @var bool Is current key valid.
      */
     protected $valid = true;
 
     /**
-     * @var int Current key
+     * @var int Current key.
      */
     protected $key;
 
@@ -26,17 +26,17 @@ abstract class AbstractXMLConverter extends AbstractConverter
     protected $xmlReader;
 
     /**
-     * @var DocumentInterface cache for current model
+     * @var DocumentInterface Cache for current model.
      */
     protected $cache;
 
     /**
-     * @var int Cache for number of objects in xml
+     * @var int Cache for number of objects in xml.
      */
     protected $count;
 
     /**
-     * @var int Depth in which we will look for object tags
+     * @var int Depth in which we will look for object tags.
      */
     protected $depth = 1;
 

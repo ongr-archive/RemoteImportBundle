@@ -19,7 +19,7 @@ use ONGR\RemoteImportBundle\Tests\Model\ProductModel;
 class ProductsConverter extends AbstractXMLConverter
 {
     /**
-     * @var string The tag which will be looked for in xml to distinguish object
+     * @var string The tag which will be looked for in xml to distinguish object.
      */
     protected $objectTag = 'product';
 

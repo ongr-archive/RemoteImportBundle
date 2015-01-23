@@ -67,7 +67,7 @@ class DataConvertService
             ]
         );
 
-        return $pipeline->execute()['outputs'];
+        return $pipeline->start()['outputs'];
     }
 
     /**
