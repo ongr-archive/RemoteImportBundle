@@ -4,7 +4,7 @@ namespace ONGR\RemoteImportBundle\Service\DataConverter;
 
 use ONGR\ConnectionsBundle\Pipeline\Event\SourcePipelineEvent;
 use ONGR\ConnectionsBundle\Event\SyncTaskCompleteEvent;
-use ONGR\ConnectionsBundle\Service\ImportDataDirectory;
+use ONGR\RemoteImportBundle\Service\ImportDataDirectory;
 use ONGR\RemoteImportBundle\Utils\Exception\NotCountableException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
