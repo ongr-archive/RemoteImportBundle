@@ -2,7 +2,7 @@
 
 namespace ONGR\RemoteImportBundle\Service\DocumentsFileStorage;
 
-use ONGR\ConnectionsBundle\Service\ImportDataDirectory;
+use ONGR\RemoteImportBundle\Service\ImportDataDirectory;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use ONGR\ConnectionsBundle\Pipeline\PipelineFactory;
