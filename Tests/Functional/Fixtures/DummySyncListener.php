@@ -1,12 +1,12 @@
 <?php
 
 /*
-* This file is part of the ONGR package.
-*
-* (c) NFQ Technologies UAB <info@nfq.com>
-*
-* For the full copyright and license information, please view the LICENSE
-*/
+ * This file is part of the ONGR package.
+ *
+ * (c) NFQ Technologies UAB <info@nfq.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ */
 
 namespace ONGR\RemoteImportBundle\Tests\Functional\Fixtures;
 
