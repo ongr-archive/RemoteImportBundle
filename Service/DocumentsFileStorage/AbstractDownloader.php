@@ -82,7 +82,7 @@ abstract class AbstractDownloader
      * @param string $dir  Target data directory.
      * @param string $path Target path.
      *
-     * @return array Array of file names to dispatch sync task complete event
+     * @return array Array of file names to dispatch sync task complete event.
      */
     abstract public function download($dir, $path);
 }

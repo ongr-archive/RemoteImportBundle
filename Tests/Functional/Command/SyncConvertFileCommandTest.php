@@ -69,7 +69,7 @@ class SyncConvertFileCommandTest extends WebTestCase
 
         $this->assertArrayContainsArray($expected, $actual);
 
-        $importCommand = $application->find('es:index:import');
+        $importCommand = $application->find('ongr:es:index:import');
         $importCommandTester = new CommandTester($importCommand);
         $importCommandTester->execute(
             [
